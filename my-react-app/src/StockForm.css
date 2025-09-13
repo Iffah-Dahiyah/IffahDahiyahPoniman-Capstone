@@ -1,0 +1,43 @@
+/* keep everything on one line */
+.formRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* large rounded input boxes (fixed width) */
+.formInput {
+  height: 56px;              /* tall input */
+  width: 360px;              /* fixed width to match layout */
+  padding: 0 18px;           /* inner left/right padding */
+  font-size: 22px;           /* big text */
+  border: 1px solid #d1d5db; /* soft grey border */
+  border-radius: 10px;       /* rounded corners */
+  background: #ffffff;       /* white input background (overrides dark mode) */
+  color: #111827;            /* almost black text */
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); /* tiny depth */
+}
+
+.formInput::placeholder {
+  color: #9ca3af;            /* soft grey placeholder text */
+}
+
+/* bright blue button with the same height as inputs */
+.formButton {
+  height: 56px;
+  padding: 0 24px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  background-color: #0b77ff;  /* vivid blue */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.formButton:hover {
+  background-color: #0666dd; /* slightly darker on hover */
+}

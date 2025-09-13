@@ -1,42 +1,46 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.page {
+  background: #f3f4f6;    /* off-white page background */
+  min-height: 100vh;
+  padding: 40px;          /* space from the edges of the window */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* the light grey rounded card */
 .card {
-  padding: 2em;
+  padding: 28px;                /* inner spacing */
 }
 
-.read-the-docs {
-  color: #888;
+/* big page title */
+.title {
+  color: #111827;
+  font-size: 56px;              /* very large title */
+  font-weight: 800;             /* extra bold */
+  line-height: 1.05;
+  margin: 0 0 20px 0;
+}
+
+/* section title: "Stock List" */
+.sectionTitle {
+  color: #111827;
+  font-size: 36px;
+  font-weight: 800;
+  margin: 24px 0 10px 0;
+}
+
+/* muted line under the section title */
+.muted {
+  color: #4b5563;
+  font-size: 18px;
+  margin: 0;
+}
+
+/* (optional) basic list styling if you add items later */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.listItem {
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
 }

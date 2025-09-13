@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import StockForm from "./StockForm";
+import "./App.css";          // page + card + headings
+import "./StockForm.css";    // form row, inputs, button
 
 function App() {
-  const [count, setCount] = useState(0)
+  // list of stocks on the dashboard
+  const [stocks, setStocks] = useState([]);
+
+  // add a new stock to the list (very explicit, beginner friendly)
+  function addStock(newStock) {
+    const oldList = stocks;                     // current list
+    const updatedList = oldList.concat(newStock); // new list with the new item at the end
+    setStocks(updatedList);                     // tell React to use the new list
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div className="page">
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <h1 className="title">Finance Dashboard</h1>
+
+        {/* the row with three inputs and the blue button */}
+        <StockForm onAddStock={addStock} />
+
+        {/* stock list area */}
+        <h2 className="sectionTitle">Stock List</h2>
+
+        {stocks.length === 0 && (
+          <p className="muted">No stocks added yet.</p>
+        )}
+
+        {stocks.length > 0 && (
+          <ul className="list">
+            {stocks.map(function (stock, index) {
+              return (
+                <li key={index} className="listItem">
+                  {stock.symbol} — {stock.quantity} shares @ ${stock.price}
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
