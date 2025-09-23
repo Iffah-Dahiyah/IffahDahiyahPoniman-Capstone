@@ -1,0 +1,15 @@
+Scaffold (done)
+
+Component sketch (done)
+
+Local app state in App (no Context yet) (done)
+
+Build the form interactions (controlled inputs → push to local stocks) (done)
+
+Conditional rendering & list (empty state vs table; placeholders until prices)
+
+API integration (AlphaVantage via useEffect; memoize with useCallback; ignore invalid)
+
+Polish & UX
+
+Refactor to Context (move state/handlers into StockContext, then useContext)
