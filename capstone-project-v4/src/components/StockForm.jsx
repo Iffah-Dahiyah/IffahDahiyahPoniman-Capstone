@@ -49,21 +49,25 @@ function onSubmit(event) {
     <label style={{ display: "grid", gap: 4 }}>
       Quantity
       <input
-        type="number"
-        placeholder="e.g. 10"
-        value={qty}
-        onChange={(event) => setQty(event.target.value)}
+          id="qty"
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          placeholder="e.g. 10"
+          value={qty}
+          onChange={(event) => setQty(event.target.value)}
       />
     </label>
 
     <label style={{ display: "grid", gap: 4 }}>
       Buy Price
       <input
-        type="number"
-        step="0.01"
-        placeholder="e.g. 150.00"
-        value={buyPrice}
-        onChange={(event) => setBuyPrice(event.target.value)}
+          id="buyPrice"
+          type="text"
+          inputMode="decimal"
+          placeholder="e.g. 150.00"
+          value={buyPrice}
+          onChange={(event) => setBuyPrice(event.target.value)}
       />
     </label>
 
