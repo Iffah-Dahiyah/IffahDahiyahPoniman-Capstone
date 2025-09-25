@@ -6,7 +6,7 @@ Local app state in App (no Context yet) (done)
 
 Build the form interactions (controlled inputs → push to local stocks) (done)
 
-Conditional rendering & list (empty state vs table; placeholders until prices)
+Conditional rendering & list (empty state vs table; placeholders until prices) (done)
 
 API integration (AlphaVantage via useEffect; memoize with useCallback; ignore invalid)
 
