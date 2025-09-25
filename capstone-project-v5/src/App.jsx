@@ -1,9 +1,12 @@
 import { useState } from "react";
 import StockForm from "./components/StockForm.jsx";
 import StockList from "./components/StockList.jsx";
+import "./App.css"; 
+
+const API_KEY = "4T42M0FBRI8PGDOY";
 
 function App() {
- // This is sample only so can see
+
   const [stocks, setStocks] = useState([]);
 
   // Add a new stock
@@ -11,49 +14,71 @@ function addStock(symbol, qty, buyPrice) {
   // create a simple id using the current time
   const id = Date.now().toString();
 
-  // make a new stock object
-  const newStock = {
-    id: id,
-    symbol: symbol.toUpperCase(),  // need to be always uppercase like "AAPL"
-    qty: parseInt(qty, 10),        // make sure it's a number
-    buyPrice: parseFloat(buyPrice),// allow decimals
-    currentPrice: 0,            // will fill this later
-  };
+useEffect(() => {
+  // 1) find ONE stock that still needs a price
+  const target = stocks.find(s => s.currentPrice === undefined);
+  if (!target) return; // nothing to do
 
-  // add it to the list
-  setStocks(oldStocks => [...oldStocks, newStock]);
-}
+  // 2) build the URL for that stock
+  const url =
+    "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" +
+    encodeURIComponent(target.symbol) +
+    "&apikey=" +
+    API_KEY;
 
-// Update an existing stock
-function updateStock(id, updates) {
-  setStocks(oldStocks =>
-    oldStocks.map(stock => {
-      if (stock.id === id) {
-        // return a copy of the stock with updates applied
-        return { ...stock, ...updates };
-      } else {
-        // leave it unchanged
-        return stock;
-      }
+  // 3) fetch -> res.json() -> set state
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const priceStr = data && data["Global Quote"] && data["Global Quote"]["05. price"];
+      const price = Number(priceStr);
     })
-  );
+    
+}, [stocks]);  // runs again after we set the price, so the next pending stock gets fetched
+
+
+//   // sample: make a new stock object
+//   const newStock = {
+//     id: id,
+//     symbol: symbol.toUpperCase(),  // need to be always uppercase like "AAPL"
+//     qty: parseInt(qty, 10),        // make sure it's a number
+//     buyPrice: parseFloat(buyPrice),// allow decimals
+//     currentPrice: 0,            // will fill this later
+//   };
+
+//   // add it to the list
+//   setStocks(oldStocks => [...oldStocks, newStock]);
+// }
+
+// // Update an existing stock
+// function updateStock(id, updates) {
+//   setStocks(oldStocks =>
+//     oldStocks.map(stock => {
+//       if (stock.id === id) {
+//         // return a copy of the stock with updates applied
+//         return { ...stock, ...updates };
+//       } else {
+//         // leave it unchanged
+//         return stock;
+//       }
+//     })
+//   );
 }
  
   return (
-    <div style={{ padding: 24, fontFamily: "system-ui, sans-serif" }}>
-      <h1>Finance Dashboard</h1>
+    <div className="page">
+      <div className="content">
+        <h1>Finance Dashboard</h1>
 
-      {/* // this is the part that is updated after you fill up form: */}
+        <section>
+          <StockForm onAdd={addStock} />
+        </section>
 
-      <section style={{ marginTop: 16, marginBottom: 24 }}>
-        {/* Form is still a sketch, handler do later */}
-        <StockForm onAdd={addStock} />
-      </section>
-
-      <section>
-        <h2 style={{ marginBottom: 8 }}>Stock List</h2>
-        <StockList items={stocks} />
-      </section>
+        <section>
+          <h2 className="section-title">Stock List</h2>
+          <StockList items={stocks} />
+        </section>
+      </div>
     </div>
   );
 }

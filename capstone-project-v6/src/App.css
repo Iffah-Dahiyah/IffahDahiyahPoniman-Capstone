@@ -1,0 +1,36 @@
+/* Make the whole page the same light grey and full-height */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #f5f6f7;  /* same grey as your form background */
+}
+
+.page {
+  min-height: 800px;           /* fill the screen */
+  display: flex;               /* center both ways */
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 800px;
+  padding: 24px; 
+  color: #111827;   
+}
+
+.content h1 {            
+  margin: 0 0 12px;
+  font-style: Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+
+.section-title {
+  margin: 16px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif
+  
+}

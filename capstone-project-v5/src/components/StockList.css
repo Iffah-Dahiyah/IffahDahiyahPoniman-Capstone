@@ -1,0 +1,16 @@
+.stockList {
+  display: grid;
+  gap: 12px;
+  
+}
+
+.stockCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.pl { font-weight: 600; }
+.pl.pos { color: #16a34a; }   /* green */
+.pl.neg { color: #dc2626; }   /* red */
